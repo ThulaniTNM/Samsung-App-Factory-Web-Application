@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row homeRow" style="background-color:white;margin-top:150px;border-color:#00796B;border-style:solid;">
+    <div class="col-sm-12">
+        <div class="jumbotron" style="background-color:white;">
+
+            <div class="homeDivButtons">
+                <p>
+                    <a href="@Url.Action("PersonSurvey")" class="btn btn-info btn-lg">
+                        Fill out survey &nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </p>
+
+                <p style="margin-bottom:0px;">
+                    <a href="@Url.Action("SurveyResults")" class="btn btn-info btn-lg">
+                        View survey results &nbsp;&nbsp; <span class="glyphicon glyphicon-list-alt"></span>
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

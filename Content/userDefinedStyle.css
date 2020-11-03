@@ -1,0 +1,33 @@
+﻿
+body {
+    background-color: #eeeeee;
+}
+
+a[class*="btn-info"], input[type="submit"] {
+    display: block;
+    border-style: outset;
+    border-width: thick;
+}
+
+    a[class*="btn-info"]:hover, input[class*="btn-info"]:hover {
+        background-color: red;
+        padding: 15px;
+    }
+
+.homeRow {
+    border: 5px double orange;
+    box-shadow: 0 0 2px 5px #777777;
+}
+.nww {
+    border: 2px solid red;
+}
+.homeDivButtons {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkboxFood, .checkboxFood:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

@@ -1,0 +1,128 @@
+﻿@model Web_Application.Models.Person
+
+@{
+    ViewBag.Title = "PersonSurvey";
+}
+
+<div class="row" style="background-color:white;">
+    <div class="col-md-12">
+        <div style="background-color: #00796B;padding:10px;color:white;margin-top:5px;">
+            <h3>
+                Take our Survey
+            </h3>
+            <h4>Person Details :</h4>
+        </div>
+       
+
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            <!--Cut from here for person-->
+    <div class="form-horizontal">
+        <div class="homeDivButtons" style="margin-left:5%">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label" })
+                </div>
+
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">@Html.LabelFor(model => model.FirstNames, htmlAttributes: new { @class = "control-label" }) </div>
+
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.FirstNames, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstNames, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">@Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label" })</div>
+
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label" })</div>
+
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">@Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label" })</div>
+
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <!--End here-->
+        <div style="background-color: #00796B;padding:10px;color:white;margin-top:5px;margin-bottom:5px;">
+            <h4>   What is your favourite food ? (You can choose more than 1 answer)</h4>
+        </div>
+        
+        @foreach (var kvp in Model.Food.SelectedFood) {
+        <div class="form-group" style="margin-bottom:20px;">
+            <div class="col-md-2">@Html.Label(Model.Food.FoodDetails[kvp.Key], htmlAttributes: new { @class = "control-label" })</div>
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Food.SelectedFood[kvp.Key], new { htmlAttributes = new { @class = "form-control checkboxFood" } })
+            </div>
+        </div>
+        }
+
+    <table class="table table-bordered" style="background-color:white;">
+        <tr style="background-color:darkslategrey;color:white;">
+            <th></th>
+            <th>Strongly Agree (1) </th>
+            <th>Agree (2) </th>
+            <th>Neutral (3)</th>
+            <th>Disagree (4)</th>
+            <th>Strongly disagree (5)</th>
+        </tr>
+        @foreach (var lkl in Model.Liking.Options) {
+    <tr style="text-align:center;">
+        <td>@lkl.Key</td>
+
+        @for (int i = 0; i < 5; i++) {
+            <td>@Html.RadioButtonFor(m => m.Liking.Options[lkl.Key], (i + 1).ToString()) </td>
+            @Html.ValidationMessageFor(model => model.Liking.Options[lkl.Key], "", new { @class = "text-danger" })
+        }
+
+    </tr>
+        }
+
+    </table>
+
+        <div style="margin-top:30px;margin-left:50%;">
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Submit" class="btn btn-lg btn-info" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+        }
+    </div>
+    </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
